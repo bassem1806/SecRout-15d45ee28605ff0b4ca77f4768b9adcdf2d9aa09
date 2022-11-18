@@ -7,4 +7,13 @@
         <boldItalic><![CDATA[META-INF/reports/fonts/arialbi.ttf]]></boldItalic>
         <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
     </fontFamily>
+
+    <fontFamilies>
+        <fontFamily name="deja vu sans mono">
+            <normal><![CDATA[C:\Users\HP\Desktop\jar\DejaVu Sans Mono 400.ttf]]></normal>
+            <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+            <exportFonts/>
+        </fontFamily>
+    </fontFamilies>
+
 </fontFamilies>

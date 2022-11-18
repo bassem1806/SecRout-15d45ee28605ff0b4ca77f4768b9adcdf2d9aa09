@@ -176,10 +176,11 @@ public class PvAccident1Controller {
 
         return "pvaccident1/listPvAccident1";
     }
-
+/*
 
     @GetMapping("export")
     public void exportToCSV(HttpServletResponse response) throws IOException {
+
 
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-mm-dd_hh:mm:ss");
@@ -217,7 +218,7 @@ public class PvAccident1Controller {
         csvWriter.close();
 
 
-    }
+    }*/
 
 
     @RequestMapping("report/{format}/{pvaccidId}")
