@@ -1,0 +1,386 @@
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.3
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="../assets/img/apple-icon.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="../assets/img/favicon.png" rel="icon" type="image/png">
+    <title>
+        إدارة الخدمات الفنية
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/42d5adcbca.js"></script>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link href="../assets/css/soft-ui-dashboard.css?v=1.0.3" id="pagestyle" rel="stylesheet"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="..//cdn.jsdelivr.net/npm/sweetalert2011"></script>
+
+</head>
+
+<!-- menu a droite  -->
+
+<body class="g-sidenav-show rtl bg-gray-100">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret"
+       id="sidenav-main">
+
+    <div th:replace="fragments/menu :: menu"/>
+
+</aside>
+<!--end  menu a droite  -->
+
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg overflow-hidden">
+
+
+    <!-- Navbar header  -->
+    <div th:replace="fragments/header :: header"/>
+
+    <div class="container my-5">
+        <h3>Add Blesse</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+
+
+                    <form action="#" method="post" th:action="@{/blesse/addSave}" th:object="${blesse}">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">Blesse Nmase</label>
+
+                                <input class="form-control" id="firstname" placeholder="blesse name " th:field="*{firstname}"
+                                       type="text"/>
+
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">Blesse CIN</label>
+
+                                <input class="form-control" id="CIN" placeholder="blesse CIN " th:field="*{CIN}"
+                                       type="text"/>
+
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">Sexe</label>
+                                <select class="form-control" id="sexe" name="sexe">
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="homme">رجل</option>
+                                    <option value="femme">إمرأة</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">Blesse Age</label>
+
+                                <input class="form-control" id="age" placeholder="blesse Age " th:field="*{age}"
+                                       type="text"/>
+
+                            </div>
+
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">EtatBlesse</label>
+                                <select class="form-control" id="EtatBlesse" name="EtatBlesse">
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="إصابات طفيفة">إصابات طفيفة</option>
+                                    <option value="إصابات تستوجب تدخل طبي">إصابات تستوجب تدخل طبي">إصابات تستوجب تدخل
+                                        طبي">إصابات تستوجب تدخل طبي
+                                    </option>
+                                    <option value="متوفى "> متوفى</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label">Blesse Observation</label>
+
+                                <input class="form-control" id="Observation" placeholder="blesse Observation " th:field="*{Observation}"
+                                       type="text"/>
+
+                            </div>
+
+                            <div class="col-md-6" id="ex1">
+                                <input class="btn btn-primary" type="submit" value="Add Blesse">
+
+
+                            </div>
+
+
+                            <div class="form-group col-md-8">
+
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navbar footer  -->
+    <div th:replace="fragments/footer :: footer"/>
+
+
+    </div>
+</main>
+<div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="fa fa-cog py-2"> </i>
+    </a>
+    <div class="card shadow-lg ">
+        <div class="card-header pb-0 pt-3 ">
+            <div class="float-end">
+                <h5 class="mt-3 mb-0">Soft UI Configurator</h5>
+                <p>See our dashboard options.</p>
+            </div>
+            <div class="float-start mt-4">
+                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <!-- End Toggle Button -->
+        </div>
+        <hr class="horizontal dark my-1">
+        <div class="card-body pt-sm-3 pt-0">
+            <!-- Sidebar Backgrounds -->
+            <div>
+                <h6 class="mb-0">Sidebar Colors</h6>
+            </div>
+            <a class="switch-trigger background-color" href="javascript:void(0)">
+                <div class="badge-colors my-2 text-end">
+                    <span class="badge filter bg-gradient-primary active" data-color="primary"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-success" data-color="success"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-warning" data-color="warning"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-danger" data-color="danger"
+                          onclick="sidebarColor(this)"></span>
+                </div>
+            </a>
+
+
+            <!--   Core JS Files   -->
+            <script src="../assets/js/sweetalert2.all.min.js"></script>
+            <script src="../assets/js/core/popper.min.js"></script>
+            <script src="../assets/js/core/bootstrap.min.js"></script>
+            <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+            <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+            <script src="../assets/js/plugins/fullcalendar.min.js"></script>
+            <script src="../assets/js/plugins/chartjs.min.js"></script>
+            <script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "#fff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          maxBarThickness: 6
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false
+            },
+            ticks: {
+              display: false
+            },
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Mobile apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#cb0c9f",
+            borderWidth: 3,
+            backgroundColor: gradientStroke1,
+            fill: true,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+
+          },
+          {
+            label: "Websites",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#3A416F",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            fill: true,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+            </script>
+            <script src="../assets/js/plugins/choices.min.js"></script>
+            <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+            </script>
+            <!-- Github buttons -->
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+            <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+            <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+</body>
+
+</html>

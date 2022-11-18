@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="/assets/img/apple-icon.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="/assets/img/favicon.png" rel="icon" type="image/png">
+    <title>
+        إدارة الخدمات الفنية
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="/assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>-->
+    <script crossorigin="anonymous" src="/assets/js/fontawesome.js"></script>
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link href="/assets/css/soft-ui-dashboard.css?v=1.0.3" id="pagestyle" rel="stylesheet"/>
+</head>
+
+<body class="g-sidenav-show rtl bg-gray-100">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret"
+       id="sidenav-main">
+
+    <div th:replace="fragments/menu :: menu"/>
+
+</aside>
+<div th:replace="fragments/header :: header"/>
+<main>
+    <!-- Navbar -->
+
+
+    <div class="container my-5">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form action="#" enctype="multipart/form-data" method="post" th:action="@{/PvAccident/addSave}"
+                          th:object="${pvAccident}">
+                        <div class="row">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-center"> محضر معاينة حادث مرور</h3>
+
+                            </div>
+
+
+                            <div class="row g-3">
+                                <div class="col-sm-7">
+                                    <label class="col-form-label" for="unite">الوحدة</label>
+                                    <select class="form-control" name="uniteId">
+                                        <option th:each="un: ${unite}" th:text="${un.name}" th:value="${un.id}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm">
+                                    <label class="col-form-label" for="dateimatric">تاريخ التسجيل </label>
+                                    <input class="form-control" id="dateimatric" placeholder="تاريخ التسجيل" th:field="*{dateimatric}"
+                                           type="date"/> <span
+                                        class="text-danger" th:errors="*{dateimatric}"
+                                        th:if="${#fields.hasErrors('dateimatric')}"></span>
+                                </div>
+
+                                <div class="col-sm">
+                                    <label class="col-form-label" for="numimatric"> رقم التسجيل </label>
+                                    <input class="form-control" id="numimatric" placeholder=" 9990 تونس 230"
+                                           th:field="*{numimatric}" type="text"/> <span
+                                        class="text-danger" th:errors="*{numimatric}"
+                                        th:if="${#fields.hasErrors('numimatric')}"></span>
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="col-form-label" for="numbarquia"> رقم البرقية </label>
+                                    <input class="form-control" id="numbarquia" placeholder=" 9990 تونس 230"
+                                           th:field="*{numbarquia}" type="text"/> <span
+                                        class="text-danger" th:errors="*{numbarquia}"
+                                        th:if="${#fields.hasErrors('numbarquia')}"></span>
+                                </div>
+
+
+                                <div class="col-6">
+                                    <label class="col-form-label" for="dateaccid"> تاريخ الحادث </label>
+                                    <input class="form-control" id="dateaccid" placeholder=" تاريخ الحادث  "
+                                           th:field="*{dateaccid}" type="date"/> <span
+                                        class="text-danger" th:errors="*{dateaccid}"
+                                        th:if="${#fields.hasErrors('dateaccid')}"></span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="text"> مكان الحادث</h5>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="col-form-label" for="gouvernorat">الولاية</label>
+                                    <select class="form-control" name="gouvernoratId">
+                                        <option th:each="gov: ${gouvernorat}" th:text="${gov.name}"
+                                                th:value="${gov.id}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="col-form-label" for="delegation">المعتمدية</label>
+                                    <select class="form-control" name="delegationId">
+                                        <option th:each="dlg: ${delegation}" th:text="${dlg.name}"
+                                                th:value="${dlg.id}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="typeRoute">الطريق</label>
+                                    <select class="form-control" name="typeRouteId">
+                                        <option th:each="tr: ${typeRoute}" th:text="${tr.name}" th:value="${tr.id}"/>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-sm-4">
+
+                                    <label class="col-form-label" for="addreaccid"> العنوان </label>
+                                    <input class="form-control" id="addreaccid" placeholder="العنوان " th:field="*{addreaccid}"
+                                           type="text"/> <span class="text-danger"
+                                                                          th:errors="*{addreaccid}"
+                                                                          th:if="${#fields.hasErrors('addreaccid')}"></span>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="pointKmaccid"> النقطة الكيلومترية </label>
+                                    <input class="form-control" id="pointKmaccid" placeholder="النقطة الكيلومترية" th:field="*{pointKmaccid}"
+                                           type="text"/> <span
+                                        class="text-danger" th:errors="*{pointKmaccid}"
+                                        th:if="${#fields.hasErrors('pointKmaccid')}"></span>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="signauxCirculation">إشارات المرور</label>
+                                    <select class="form-control" name="signauxCirculationId">
+                                        <option th:each="Sig: ${signauxCirculation}" th:text="${Sig.name}"
+                                                th:value="${Sig.id}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="situationRoute"> حالة الطريق</label>
+                                    <select class="form-control" name="situationRouteId">
+                                        <option th:each="Sitr: ${situationRoute}" th:text="${Sitr.name}"
+                                                th:value="${Sitr.id}"/>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="temps"> حالة الطقس</label>
+                                    <select class="form-control" name="tempsId">
+                                        <option th:each="tmp: ${temps}" th:text="${tmp.name}" th:value="${tmp.id}"/>
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text"> أسباب الحادث</h5>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="part"> الوسائل المتسببة في الحادث</label>
+                                    <select class="form-control" multiple name="partId">
+                                        <option th:each="pt: ${part}" th:text="${pt.name}" th:value="${pt.id}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input class="btn btn-primary" type="submit" value="إضافة محضر معاية حادث"/>
+                                </div>
+
+
+                                <p align="right" class="my-5">
+                                    <a class="btn btn-secondary" th:href="@{'/PvAccident/list'}">
+
+                                        <i class="fas fa-solid fa-backward">الرجوع الى قائمة الحوادث</i></a>
+
+
+                                <div class="form-group col-md-8"></div>
+
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div th:replace="fragments/footer :: footer"/>
+
+
+</main>
+
+
+<!--   Core JS Files   -->
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="../assets/js/plugins/fullcalendar.min.js"></script>
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "#fff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          maxBarThickness: 6
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false
+            },
+            ticks: {
+              display: false
+            },
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Mobile apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#cb0c9f",
+            borderWidth: 3,
+            backgroundColor: gradientStroke1,
+            fill: true,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+
+          },
+          {
+            label: "Websites",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#3A416F",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            fill: true,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+</script>
+<script src="../assets/js/plugins/choices.min.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+</body>
+
+</html>

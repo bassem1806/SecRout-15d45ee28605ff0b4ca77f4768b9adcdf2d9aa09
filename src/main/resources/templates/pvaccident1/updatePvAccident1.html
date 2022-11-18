@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <!--  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">-->
+    <link href="/assets/img/favicon.png" rel="icon" type="image/png">
+    <title>
+        إدارة الخدمات الفنية
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="/assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>-->
+    <script crossorigin="anonymous" src="/assets/js/fontawesome.js"></script>
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link href="/assets/css/soft-ui-dashboard.css?v=1.0.3" id="pagestyle" rel="stylesheet"/>
+
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" rel="stylesheet">
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
+          referrerpolicy="no-referrer"
+          rel="stylesheet"/>
+
+
+    <script src="/assets/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+	$('#gouvernorat').on('change', function(){
+		var gouvernorat_id = $(this).val();
+
+		$.ajax({
+			type: 'GET',
+			url: '/PvAccidentnew/loadDelegationByGouvernorat/' + gouvernorat_id,
+			success: function(result) {
+				var result = JSON.parse(result);
+				var s = '<option value="">--من فضل إختر  المعتمدية--</option>';
+				for(var i = 0; i < result.length; i++) {
+					s += '<option value="' + result[i].delegationId + '">' + result[i].name + '</option>';
+				}
+				$('#gouvernorat1').empty();
+				$('#gouvernorat1').html(s);
+			}
+		});
+	});
+		});
+
+    </script>
+
+
+</head>
+
+<body class="g-sidenav-show rtl bg-gray-100">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret"
+       id="sidenav-main">
+
+    <div th:replace="fragments/menu :: menu"/>
+
+</aside>
+
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 ">
+    <!-- Navbar -->
+
+    <div th:replace="fragments/header :: header"/>
+
+
+    <div class="container my-3">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form enctype="multipart/form-data" method="post" th:action="@{/PvAccidentnew/updatepv}"
+                          th:object="${pvAccident1}">
+                        <input th:field="*{pvaccidId}" type="hidden">
+
+                        <div class="row">
+
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-center"> محضر معاينة حادث مرور</h3>
+
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <label class="col-form-label">عدد المحضر </label>
+                                <input class="form-control" id="PvNum" placeholder="تاريخ المحضر " required
+                                       th:field="*{PvNum}" type="text"/> <span
+                                    class="text-danger" th:errors="*{PvNum}"
+                                    th:if="${#fields.hasErrors('PvNum')}"></span>
+                            </div>
+                            <div class="col-sm-4">
+
+                                <label class="col-form-label" for="datePv" id="datePv">تاريخ المحضر </label>
+                                <input class="form-control" placeholder="تاريخ المحضر " required th:field="*{datePv}"
+                                       type="date"/> <span class="text-danger" th:errors="*{datePv}"
+                                                        th:if="${#fields.hasErrors('datePv')}"></span>
+                            </div>
+
+
+                            <div class="col-sm-4">
+
+                                <label class="col-form-label" for="anneePv" id="anneePv">سنة المحضر </label>
+                                <input class="form-control" placeholder="سنة المحضر " required th:field="*{anneePv}"
+                                       type="text"/> <span class="text-danger" th:errors="*{anneePv}"
+                                                        th:if="${#fields.hasErrors('anneePv')}"></span>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-sm-7">
+                                    <label class="col-form-label" for="unite">الوحدة</label>
+                                    <select class="form-control" id="unite" name="uniteId">
+                                        <option th:each="un: ${unite}"
+                                                th:selected="(${un.id} == ${idUnite})"
+                                                th:text="${un.name}"
+                                                th:value="${un.id}"
+
+                                        />
+                                    </select>
+
+                                </div>
+
+                                <div class="col-sm">
+                                    <label class="col-form-label" for="dateimatric" id="dateimatric">تاريخ
+                                        التسجيل </label>
+                                    <input class="form-control" placeholder="تاريخ التسجيل" th:field="*{dateimatric}"
+                                           type="date"/> <span
+                                        class="text-danger" th:errors="*{dateimatric}"
+                                        th:if="${#fields.hasErrors('dateimatric')}"></span>
+                                </div>
+
+                                <div class="col-sm">
+                                    <label class="col-form-label" for="numimatric"> رقم التسجيل </label>
+                                    <input class="form-control" id="numimatric" placeholder="9990 تونس 230"
+                                           th:field="*{numimatric}" type="text"/> <span
+                                        class="text-danger" th:errors="*{numimatric}"
+                                        th:if="${#fields.hasErrors('numimatric')}"></span>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="col-form-label" for="numbarquia"> رقم البرقية </label>
+                                    <input class="form-control" id="numbarquia" placeholder=" 9990 تونس 230"
+                                           th:field="*{numbarquia}" type="text"/> <span
+                                        class="text-danger" th:errors="*{numbarquia}"
+                                        th:if="${#fields.hasErrors('numbarquia')}"></span>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <label class="col-form-label" for="dateaccid"> تاريخ الحادث </label>
+                                    <input class="form-control" id="dateaccid" placeholder=" تاريخ الحادث  "
+                                           th:field="*{dateaccid}" type="date"/> <span
+                                        class="text-danger" th:errors="*{dateaccid}"
+                                        th:if="${#fields.hasErrors('dateaccid')}"></span>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="retard"> متخلفة</label>
+
+                                    <select class="form-control" id="retard" name="retard" required>
+
+                                        <option value="retard.id">4587</option>
+
+
+                                    </select>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="text"> مكان الحادث</h5>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="col-form-label" for="gouvernorat">الولاية</label>
+                                    <select class="form-control" id="gouvernorat" name="gouvernoratId">
+                                        <option th:each="gv: ${gouvernorat}"
+                                                th:selected="(${gv.id} == ${idGouvernorat})"
+                                                th:text="${gv.name}"
+                                                th:value="${gv.id}"
+
+                                        />
+                                    </select>
+
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <label class="col-form-label" for="gouvernorat1">المعتمدية</label>
+                                    <select class="form-control" id="gouvernorat1" name="gouvernoratId1">
+                                        <option th:each="gv: ${delegation}"
+                                                th:selected="(${gv.delegationId} == ${idDelegation})"
+                                                th:text="${gv.name}"
+                                                th:value="${gv.delegationId}"
+
+                                        />
+                                    </select>
+                                </div>
+
+                                <!--       <div class="col-sm-6">
+                                             <label for="delegation" class="col-form-label" >المعتمدية</label>
+                                             <select name="delegationId" class="form-control">
+                                                 <option  th:each="dg: ${delegation}" th:value="${dg.delegationId}" th:text="${dg.name}" id="delegation"/>
+                                             </select>
+                                         </div>-->
+
+                                <div class="col-sm-4">
+
+                                    <label class="col-form-label" for="addreaccid"> العنوان </label>
+                                    <input class="form-control" id="addreaccid" placeholder="العنوان " th:field="*{addreaccid}"
+                                           type="text"/> <span class="text-danger"
+                                                                          th:errors="*{addreaccid}"
+                                                                          th:if="${#fields.hasErrors('addreaccid')}"></span>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="pointKmaccid"> النقطة الكيلومترية </label>
+                                    <input class="form-control" id="pointKmaccid" placeholder="النقطة الكيلومترية" th:field="*{pointKmaccid}"
+                                           type="text"/> <span
+                                        class="text-danger" th:errors="*{pointKmaccid}"
+                                        th:if="${#fields.hasErrors('pointKmaccid')}"></span>
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="signauxCirculation">إشارات المرور</label>
+                                    <select class="form-control" id="signauxCirculation" name="signauxCirculationId">
+                                        <option th:each="sg: ${signauxCirculation}"
+                                                th:selected="(${sg.signeId} == ${idSignauxCirculation})"
+                                                th:text="${sg.name}"
+                                                th:value="${sg.signeId}"
+
+                                        />
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="typeRoute"> نوع الطريق</label>
+                                    <select class="form-control" id="typeRoute" name="typeRouteId">
+                                        <option th:each="tr: ${typeRoute}"
+                                                th:selected="(${tr.Id} == ${idTypeRoute})"
+                                                th:text="${tr.name}"
+                                                th:value="${tr.Id}"
+
+                                        />
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="situationRoute"> حالة الطريق</label>
+                                    <select class="form-control" id="situationRoute" name="situationRouteId">
+                                        <option th:each="st: ${situationRoute}"
+                                                th:selected="(${st.Id} == ${idSituationRoute})"
+                                                th:text="${st.name}"
+                                                th:value="${st.Id}"
+
+                                        />
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label" for="temps"> الطقس</label>
+                                    <select class="form-control" id="temps" name="tempsId">
+                                        <option th:each="t: ${temps}"
+                                                th:selected="(${t.Id} == ${idTemps})"
+                                                th:text="${t.name}"
+                                                th:value="${t.Id}"
+
+                                        />
+                                    </select>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <h5 class="text"> أسباب الحادث</h5>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label select-label" for="causeAccident">أسباب الحادث</label><br>
+                                    <select class="select" id="causeAccident" multiple
+                                            name="causeAccidentId" th:field="*{causeAccidents}">
+                                        <option th:each="s: ${causeAccidents}"
+                                                th:selected="(${s.causeaccidentId} == ${idCauseAccidents})"
+                                                th:text="${s.name}"
+                                                th:value="${s.causeaccidentId}"
+
+                                        />
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+
+                                    <label class="col-form-label" for="causePrincipale"> السبب الرئيسي للحادث </label>
+                                    <input class="form-control" id="causePrincipale" placeholder="السبب الرئيسي "
+                                           th:field="*{causePrincipale}" type="text"/> <span
+                                        class="text-danger" th:errors="*{causePrincipale}"
+                                        th:if="${#fields.hasErrors('causePrincipale')}"></span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="text"> الوسائل المشاركة في الحادث</h5>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label select-label" for="part"> الوسائل المشاركة في
+                                        الحادث</label><br>
+                                    <select class="select" id="part" multiple name="partId" th:field="*{parts}">
+                                        <option th:each="p: ${parts}"
+                                                th:selected="(${p.Id} == ${idParts})"
+                                                th:text="${p.name}"
+                                                th:value="${p.Id}"
+
+                                        />
+                                    </select>
+
+                                </div>
+
+
+                                <div class="card-body">
+                                    <h5 class="text"> الأطراف المتضررة في الحادث</h5>
+                                </div>
+
+                                <div class="table-responsive">
+
+                                    <table class="table" id="tbl-blesses">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">الإسم واللقب</th>
+                                            <th scope="col">ب.ت.و</th>
+                                            <th scope="col">الجنس</th>
+                                            <th scope="col">العمر</th>
+                                            <th scope="col">الحالة</th>
+                                            <th scope="col">الملاحظات</th>
+                                            <th scope="col">edit</th>
+
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="blesse : ${blesses}">
+                                            <td th:text="${blesse.blesseId}" th:value="blesseId">ID</td>
+                                            <td th:text="${blesse.firstname}" th:value="firstname">الإسم واللقب</td>
+                                            <td th:text="${blesse.CIN}" th:value="CIN"> CIN</td>
+                                            <td th:text="${blesse.sexe}" th:value="sexe"> sexe</td>
+                                            <td th:text="${blesse.age}" th:value="age"> age</td>
+                                            <td th:text="${blesse.EtatBlesse}" th:value="EtatBlesse"> etat blesse</td>
+                                            <td th:text="${blesse.Observation}" th:value="Observation">observation</td>
+                                            <td>
+                                                <a class="btn btn-warning"
+                                                   th:href="@{'/blesse/edit/'+${blesse.blesseId}+'/'+${pvAccident1.id}}">edit <i
+                                                        class="fas fa-user-edit ml-2"></i></a></td>
+
+
+                                            <td>
+                                                <a class="btn btn-danger"
+                                                   th:href="@{'/blesse/delete/'+${blesse.blesseId}+'/'+${pvAccident1.id}}">delete <i class="fas fa-user-times ml-2"></i></a>
+                                            </td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <Add button-- rows>
+                                    <div>
+                                        <a class="btn btn-primary rounded-0 btn-block" id="insertRow">إضافة مصاب</a>
+                                    </div>
+
+
+                                    <div>
+                                        <input class="btn btn-primary" type="submit" value="تسجيل محضر معاين حادث"/>
+                                    </div>
+
+                                    <p align="right" class="my-5">
+                                        <a class="btn btn-secondary" th:href="@{'/PvAccidentnew/list1'}">
+
+                                            <i class="fas fa-solid fa-backward">الرجوع الى قائمة الحوادث</i></a>
+
+
+                                    <div class="form-group col-md-8"></div>
+
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div th:replace="fragments/footer :: footer"/>
+
+
+</main>
+
+
+<!--   Core JS Files   -->
+<script src="/assets/js/core/popper.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/bootstrap-select.min.js"></script>
+<script src="/assets/js/plugins/choices.min.js"></script>
+
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+</script>
+
+
+<!--script type="text/javascript">
+    $('.ex-disable').click(function () {
+  $('.disable-example').prop('disabled', true);
+});
+
+$('.ex-enable').click(function () {
+  $('.disable-example').prop('disabled', false);
+  $('.disable-example').selectpicker('refresh');
+});
+    </script-->
+
+
+<script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+
+
+<script>
+
+
+
+$(function () {
+
+    // Start counting from the third row
+    var counter = 1;
+
+    $("#insertRow").on("click", function (event) {
+        event.preventDefault();
+
+        var newRow = $("<tr>");
+        var cols = '';
+
+        // Table columns
+        cols += '<td scrope="row">' + counter + '</td>';
+		cols += '<td><input class="form-control rounded-0" type="text" name="firstname" placeholder="الإسم واللقب "></td>';
+
+        cols += '<td><input class="form-control rounded-0" type="text" name="CIN" placeholder="رقم بطاقة  لاتعريف الوطنية"></td>';
+
+		cols += '<td><select name="sexe" id="sexe"><option value="">--الجنس--</option>'
++		'<option value="998">ذكر</option>'+
+'<option value="999">أنثى</option>'
+		'</select></td>';
+
+       cols += '<td><input class="form-control rounded-0" type="text" name="age" placeholder="السن"></td>';
+		cols += '<td><select name="EtatBlesse" id="EtatBlesse"><option value="">--حالة المصاب--</option>'
++		'<option value="1000">إصابات طفيفة</option>'+
+'<option value="1001">إصابات تستوجب تدخل طبي</option>'+
+'<option value="1002">متوفى</option>'
+		'</select></td>';
+
+        cols += '<td><input class="form-control rounded-0" type="text" name=" Observation" placeholder=" ملاحظات"></td>';
+        cols += '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
+
+        // Insert the columns inside a row
+        newRow.append(cols);
+
+        // Insert the row inside a table
+        $("#tbl-blesses").append(newRow);
+
+        // Increase counter after each row insertion
+        counter++;
+    });
+
+
+    // Remove row when delete btn is clicked
+    $("#tbl-blesses").on("click", "#deleteRow", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+    });
+
+
+
+
+});
+
+
+
+</script>
+
+-->
+</body>
+
+</html>

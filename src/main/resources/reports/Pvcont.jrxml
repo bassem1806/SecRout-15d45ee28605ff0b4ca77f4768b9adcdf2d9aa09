@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2022-11-08T14:51:14 -->
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="PvAccident1" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0"
+              topMargin="0" bottomMargin="0" uuid="13e9aea8-8ee7-47f8-8fa7-5cbf8a3c5c8f">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="SecRoutiereV0"/>
+    <queryString language="SQL">
+        <![CDATA[Select
+p.pvaccid_id,
+p.addreaccid,
+p.dateaccid,
+p.cause_principale,
+p.point_kmaccid,
+p.numbarquia,
+p.pvnum,
+p.date_pv,
+u.unite_name
+
+FROM sec_routierev0.pv_accident1 p
+left join sec_routierev0.Unite u
+on p.unite_id=u.unite_id
+
+where p.pvaccid_id=15371
+
+GROUP BY
+p.pvaccid_id,
+p.addreaccid,
+p.dateaccid,
+p.cause_principale,
+p.point_kmaccid,
+p.numbarquia,
+p.pvnum,
+p.date_pv,
+u.unite_name]]>
+    </queryString>
+    <field name="pvaccid_id" class="java.lang.Long"/>
+    <field name="addreaccid" class="java.lang.String"/>
+    <field name="dateaccid" class="java.lang.String"/>
+    <field name="cause_principale" class="java.lang.String"/>
+    <field name="point_kmaccid" class="java.lang.String"/>
+    <field name="numbarquia" class="java.lang.Long"/>
+    <field name="pvnum" class="java.lang.String"/>
+    <field name="date_pv" class="java.lang.String"/>
+    <field name="unite_name" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="81" splitType="Stretch">
+            <staticText>
+                <reportElement x="180" y="10" width="220" height="30" uuid="d049688f-6bb2-49e3-b5b8-1377e0898bb1"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement>
+                    <font fontName="Arial" size="25" isBold="true"/>
+                </textElement>
+                <text><![CDATA[محضر معاينة حادث مرور]]></text>
+            </staticText>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="10" y="10" width="100" height="30" uuid="78c370d9-6642-4455-a6ab-509751b4fd9d"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <textField pattern="HH:mm">
+                <reportElement x="10" y="50" width="100" height="30" uuid="3cea00c4-d914-4460-bb0e-f06bb0d6480d"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="607" splitType="Stretch">
+            <staticText>
+                <reportElement x="436" y="10" width="100" height="30" uuid="c9859567-cad7-4632-9628-03571f13a092"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[عدد المحضر]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="436" y="50" width="100" height="30" uuid="7aa4e365-6108-4c85-bb5d-1b7100844b16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{pvnum}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="319" y="10" width="100" height="30" uuid="eb148da4-afac-4c57-b174-0f56ef3d3970"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[عدد البرقية]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="319" y="50" width="100" height="30" uuid="0fda1347-674b-4539-9690-6987b10ee43a"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{numbarquia}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="208" y="50" width="100" height="30" uuid="dbc2af55-a445-4040-b6ab-def7efd720ad"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{date_pv}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="208" y="10" width="100" height="30" uuid="b2c8abf0-4456-4249-92b6-0f5d86706211"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[تاريخ المحضر]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="10" width="100" height="30" uuid="c90f97af-2b01-4923-9175-b2cf4ab6f504"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[تاريخ الحادث]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="90" y="50" width="100" height="30" uuid="f5f7ab42-a97d-4448-8c45-86589ff97286"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{dateaccid}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="215" y="140" width="319" height="30" uuid="2b389e1a-1b44-4137-93f9-dc8364e5193f"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Top">
+                    <font fontName="Arial" size="16"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{unite_name}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="215" y="102" width="319" height="30" uuid="dd3a5ded-8216-4ef1-81d0-61f6251fc2a6"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[الوحدة الامنية المتعهدة]]></text>
+            </staticText>
+        </band>
+        <band height="80"/>
+        <band height="50"/>
+    </detail>
+</jasperReport>

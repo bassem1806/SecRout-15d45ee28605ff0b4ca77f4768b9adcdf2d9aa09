@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="../assets/img/apple-icon.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="../assets/img/favicon.png" rel="icon" type="image/png">
+    <title>
+        إدارة الخدمات الفنية
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/42d5adcbca.js"></script>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+
+</head>
+
+<!-- Navbar header  -->
+<div th:fragment="header">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+         navbar-scroll="true">
+        <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 ">
+                    <li class="breadcrumb-item text-sm ps-2"><a class="opacity-5 text-dark" href="javascript:;"> إدارة
+                        الخدمات الفنية </a></li>
+                    <li aria-current="page" class="breadcrumb-item text-sm text-dark active">الإدارة الفرعية للإعلامية
+                    </li>
+                </ol>
+                <h6 class="font-weight-bolder mb-0">لوحة اقيادة </h6>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 px-0" id="navbar">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div class="input-group">
+                        <span class="input-group-text text-body"><i aria-hidden="true" class="fas fa-search"></i></span>
+                        <input class="form-control" placeholder="أكتب هنا..." type="text">
+                    </div>
+                </div>
+                <div align="right" class="container">
+                    <ul class="navbar-nav me-auto ms-0 justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <!-- Navbar header  -->
+                            <!--    <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">-->
+
+                            <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none">يسجل دخول</span>
+                            <span sec:authentication="name"></span>
+
+                            </a>
+                        </li>
+                        <li class="nav-item d-xl-none pe-3 d-flex align-items-center">
+                            <a class="nav-link text-body p-0" href="javascript:;" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a class="nav-link text-body p-0" href="javascript:;">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown ps-2 d-flex align-items-center">
+                            <a aria-expanded="false" class="nav-link text-body p-0" data-bs-toggle="dropdown"
+                               href="javascript:;" id="dropdownMenuButton">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                            </a>
+
+                            <span><a th:href="@{/logout}">Sign Out</a></span>
+                            <ul aria-labelledby="dropdownMenuButton" class="dropdown-menu  px-2 py-3 me-sm-n4">
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img class="avatar avatar-sm  ms-3 " src="../assets/img/team-2.jpg">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">New message</span> from Laur
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+    </nav>
+</div>
+<!-- End Navbar -->
+
+
+</main>
+
+</html>
