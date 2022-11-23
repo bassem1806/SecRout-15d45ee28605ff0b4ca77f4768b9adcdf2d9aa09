@@ -229,21 +229,24 @@ public class PvAccident1Controller {
         System.out.println("pvacciednt2 :" + pvAccident2.get().getId());
 
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sec_routierev0", "root", "");
+   Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sec_routierev0", "root", "");
+       // Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sec_routierev0?tinyInt1isBit=false", "root", "");
 
         String path = "C:\\Users\\HP\\Desktop\\Report";
 
-        File file = ResourceUtils.getFile("classpath:reports/Pvcont.jrxml");
+        File file = ResourceUtils.getFile("classpath:reports/Pvaccidentnew.jrxml");
+      //  File file = ResourceUtils.getFile("classpath:reports/Main.jrxml");
 
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         //  JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(pvAccident2));
-        //Map<String, Object> parameters = new HashMap<>();
-        // parameters.put("pvId", pvaccidId);
+       Map<String, Object> parameters = new HashMap<>();
+     parameters.put("pvid", pvaccidId);
+
 
         String nom = "Pv Accident_" + pvaccidId;
 
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), connection);
+        //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),connection);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),connection);
 
 
         if (format.equalsIgnoreCase("html")) {

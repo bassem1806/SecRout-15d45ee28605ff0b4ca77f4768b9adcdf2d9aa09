@@ -7,49 +7,102 @@
     <property name="ireport.jasperserver.user" value="jasperadmin"/>
     <property name="ireport.jasperserver.report.resource" value="/reports/Pvcont_files/main_jrxml"/>
     <property name="ireport.jasperserver.reportUnit" value="/reports/Pvcont"/>
+    <parameter name="pvid" class="java.lang.Long"/>
     <queryString language="SQL">
-        <![CDATA[Select
-p.pvaccid_id,
-p.addreaccid,
-p.dateaccid,
-p.cause_principale,
-p.point_kmaccid,
-p.numbarquia,
-p.pvnum,
-p.date_pv,
-u.unite_name
-
+        <![CDATA[SELECT p.pvaccid_id,
+	p.addreaccid,
+	p.dateaccid,
+	p.cause_principale,
+	p.point_kmaccid,
+	p.numbarquia,
+	p.pvnum,
+	p.date_pv,
+	d.delegation_name,
+    g.gouvernorat_name,
+	u.unite_name
 FROM sec_routierev0.pv_accident1 p
-left join sec_routierev0.Unite u
-on p.unite_id=u.unite_id
+	left join sec_routierev0.unite u ON
+	 p.unite_id = u.unite_id
 
-where p.pvaccid_id=15371
+	 left join sec_routierev0.Delegation d
+	on p.delegation_id=d.delegation_id
 
-GROUP BY
-p.pvaccid_id,
-p.addreaccid,
-p.dateaccid,
-p.cause_principale,
-p.point_kmaccid,
-p.numbarquia,
-p.pvnum,
-p.date_pv,
-u.unite_name]]>
+
+	left join sec_routierev0.Gouvernorat g
+	on  g.gouvernorat_id = d.gouvernorat_id
+WHERE
+	 p.pvaccid_id =  $P{pvid}
+
+GROUP BY p.pvaccid_id,
+	p.addreaccid,
+	p.dateaccid,
+	p.cause_principale,
+	p.point_kmaccid,
+	p.numbarquia,
+	p.pvnum,
+	p.date_pv,
+	u.unite_name]]>
     </queryString>
-    <field name="pvaccid_id" class="java.lang.Long"/>
-    <field name="addreaccid" class="java.lang.String"/>
-    <field name="dateaccid" class="java.lang.String"/>
-    <field name="cause_principale" class="java.lang.String"/>
-    <field name="point_kmaccid" class="java.lang.String"/>
-    <field name="numbarquia" class="java.lang.Long"/>
-    <field name="pvnum" class="java.lang.String"/>
-    <field name="date_pv" class="java.lang.String"/>
-    <field name="unite_name" class="java.lang.String"/>
+    <field name="pvaccid_id" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.name" value="pvaccid_id"/>
+        <property name="com.jaspersoft.studio.field.label" value="pvaccid_id"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="addreaccid" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="addreaccid"/>
+        <property name="com.jaspersoft.studio.field.label" value="addreaccid"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="dateaccid" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="dateaccid"/>
+        <property name="com.jaspersoft.studio.field.label" value="dateaccid"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="cause_principale" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="cause_principale"/>
+        <property name="com.jaspersoft.studio.field.label" value="cause_principale"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="point_kmaccid" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="point_kmaccid"/>
+        <property name="com.jaspersoft.studio.field.label" value="point_kmaccid"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="numbarquia" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.name" value="numbarquia"/>
+        <property name="com.jaspersoft.studio.field.label" value="numbarquia"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="pvnum" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="pvnum"/>
+        <property name="com.jaspersoft.studio.field.label" value="pvnum"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="date_pv" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="date_pv"/>
+        <property name="com.jaspersoft.studio.field.label" value="date_pv"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+    </field>
+    <field name="delegation_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="delegation_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="delegation_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="delegation"/>
+    </field>
+    <field name="gouvernorat_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="gouvernorat_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="gouvernorat_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="gouvernorat"/>
+    </field>
+    <field name="unite_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="unite_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="unite_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="unite"/>
+    </field>
     <background>
         <band splitType="Stretch"/>
     </background>
     <title>
-        <band height="81" splitType="Stretch">
+        <band height="103" splitType="Stretch">
             <staticText>
                 <reportElement x="180" y="10" width="220" height="30" uuid="d049688f-6bb2-49e3-b5b8-1377e0898bb1"/>
                 <box>
@@ -76,16 +129,16 @@ u.unite_name]]>
     <detail>
         <band height="607" splitType="Stretch">
             <staticText>
-                <reportElement x="436" y="30" width="100" height="30" uuid="c9859567-cad7-4632-9628-03571f13a092"/>
-                <textElement textAlignment="Right">
+                <reportElement x="430" y="30" width="100" height="30" uuid="c9859567-cad7-4632-9628-03571f13a092"/>
+                <textElement textAlignment="Left">
                     <font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
                 </textElement>
                 <text><![CDATA[عدد المحضر]]></text>
             </staticText>
             <textField>
-                <reportElement x="436" y="70" width="100" height="30" uuid="7aa4e365-6108-4c85-bb5d-1b7100844b16"/>
+                <reportElement isPrintRepeatedValues="false" x="436" y="70" width="100" height="30" uuid="7aa4e365-6108-4c85-bb5d-1b7100844b16"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Arial" size="18" isBold="true"/>
+                    <font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{pvnum}]]></textFieldExpression>
             </textField>
@@ -99,14 +152,14 @@ u.unite_name]]>
             <textField>
                 <reportElement x="319" y="70" width="100" height="30" uuid="0fda1347-674b-4539-9690-6987b10ee43a"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Arial" size="18" isBold="true"/>
+                    <font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{numbarquia}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="190" y="60" width="100" height="30" uuid="dbc2af55-a445-4040-b6ab-def7efd720ad"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Arial" size="18" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="18" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{date_pv}]]></textFieldExpression>
             </textField>
@@ -127,7 +180,7 @@ u.unite_name]]>
             <textField>
                 <reportElement x="40" y="64" width="100" height="30" uuid="f5f7ab42-a97d-4448-8c45-86589ff97286"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Arial" size="18" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="18" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{dateaccid}]]></textFieldExpression>
             </textField>
@@ -157,6 +210,47 @@ u.unite_name]]>
                 </textElement>
                 <text><![CDATA[الوحدة الامنية المتعهدة]]></text>
             </staticText>
+            <staticText>
+                <reportElement x="140" y="210" width="290" height="30" uuid="c1bab589-f56a-4137-9993-b1a90d008c68"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center">
+                    <font fontName="DejaVu Sans Mono" size="24" isBold="true"/>
+                </textElement>
+                <text><![CDATA[مكان الحادث]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="440" y="250" width="100" height="30" uuid="1259493f-0fba-4ccc-a234-7176046ddde3"/>
+                <textElement textAlignment="Center">
+                    <font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[الولاية ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="320" y="250" width="100" height="30" uuid="0e7b22da-b84f-4aae-893b-a43a3ab2509e"/>
+                <textElement textAlignment="Center">
+                    <font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[المعتمدية]]></text>
+            </staticText>
+            <textField>
+                <reportElement isPrintRepeatedValues="false" x="310" y="290" width="100" height="30" uuid="d19b3f2e-72ff-474e-bf23-8afe75f36117"/>
+                <textElement textAlignment="Right">
+                    <font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{delegation_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement isPrintRepeatedValues="false" x="445" y="295" width="100" height="30" uuid="ac65a24d-ebb9-4d6f-a4ca-0c8da8f4137b"/>
+                <textElement textAlignment="Right">
+                    <font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{gouvernorat_name}]]></textFieldExpression>
+            </textField>
         </band>
         <band height="80"/>
         <band height="50"/>

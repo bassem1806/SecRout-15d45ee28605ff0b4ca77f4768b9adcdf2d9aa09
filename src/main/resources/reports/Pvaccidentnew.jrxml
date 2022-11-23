@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pvaccidentnew" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0803543-0b01-43c8-bae9-f1bd9aec2de7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SecRoutiereV0"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8081/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/Pvaccidentnew_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Pvaccidentnew"/>
+
+	<queryString language="SQL">
+		<![CDATA[SELECT p.pvaccid_id,
+	p.addreaccid,
+	p.dateaccid,
+	p.cause_principale,
+	p.point_kmaccid,
+	p.numbarquia,
+	p.pvnum,
+	p.date_pv,
+	d.delegation_name,
+	g.gouvernorat_name,
+	u.unite_name
+FROM sec_routierev0.pv_accident1 p
+	left join sec_routierev0.unite u ON
+	 p.unite_id = u.unite_id
+	left join sec_routierev0.delegation d ON
+	 p.delegation_id = d.delegation_id
+	left join sec_routierev0.gouvernorat g ON
+	 g.gouvernorat_id = d.gouvernorat_id
+
+
+GROUP BY p.pvaccid_id,
+	p.addreaccid,
+	p.dateaccid,
+	p.cause_principale,
+	p.point_kmaccid,
+	p.numbarquia,
+	p.pvnum,
+	p.date_pv,
+	u.unite_name]]>
+	</queryString>
+	<field name="pvaccid_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="pvaccid_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="pvaccid_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="addreaccid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="addreaccid"/>
+		<property name="com.jaspersoft.studio.field.label" value="addreaccid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="dateaccid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dateaccid"/>
+		<property name="com.jaspersoft.studio.field.label" value="dateaccid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="cause_principale" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cause_principale"/>
+		<property name="com.jaspersoft.studio.field.label" value="cause_principale"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="point_kmaccid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="point_kmaccid"/>
+		<property name="com.jaspersoft.studio.field.label" value="point_kmaccid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="numbarquia" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="numbarquia"/>
+		<property name="com.jaspersoft.studio.field.label" value="numbarquia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="pvnum" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pvnum"/>
+		<property name="com.jaspersoft.studio.field.label" value="pvnum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="date_pv" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="date_pv"/>
+		<property name="com.jaspersoft.studio.field.label" value="date_pv"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pv_accident1"/>
+	</field>
+	<field name="delegation_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="delegation_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="delegation_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="delegation"/>
+	</field>
+	<field name="gouvernorat_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gouvernorat_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="gouvernorat_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="gouvernorat"/>
+	</field>
+	<field name="unite_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="unite_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="unite_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="unite"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="10" width="220" height="30" uuid="a5dbe90b-2cbd-4a62-8825-e7e13b709d4d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[محضر معاينة حادث مرور]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="4" y="8" width="100" height="30" uuid="6af48e5a-cacb-4862-b3e8-7360ab4a7fc3"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="3" y="46" width="100" height="30" uuid="37e2f8eb-237b-46f9-a29a-755348c5fdba"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="190" splitType="Stretch">
+			<textField>
+				<reportElement x="327" y="51" width="100" height="30" uuid="57ece9e9-9371-46b7-84cd-418438c3d8c9"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numbarquia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="438" y="11" width="100" height="30" uuid="e3632212-7032-42ac-9ea8-7b094c512d78"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[عدد المحضر]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="41" width="100" height="30" uuid="baeaa40b-181e-4952-82ef-d113c7bdac6c"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_pv}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="327" y="11" width="100" height="30" uuid="38527f40-ebe4-4e85-8332-fce7c732f62d"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[عدد البرقية]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="45" width="100" height="30" uuid="b3e4cfc3-f69c-4d3b-85d5-9f2a96a493b0"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateaccid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="223" y="103" width="319" height="30" uuid="fd3cd896-9ca0-4656-bdb2-a58010a6b625"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الوحدة الامنية المتعهدة]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="223" y="141" width="319" height="30" uuid="1fc7a641-b1b7-4457-8d68-ef35accc6f96"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="DejaVu Sans Mono" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unite_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="11" width="150" height="30" uuid="bb1128c7-293f-4c90-81cb-efb707d7ff99"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[تاريخ الحادث]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="11" width="128" height="30" uuid="9c0f15f9-3733-4a76-9bb5-83a63b9498b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[تاريخ المحضر]]></text>
+			</staticText>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="444" y="51" width="100" height="30" uuid="fffcfbad-0837-4bde-b7dd-fcc8c60f4e74"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pvnum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="325" splitType="Stretch">
+			<staticText>
+				<reportElement x="141" y="10" width="290" height="30" uuid="ad681322-f9cf-4111-8744-81f5552c505e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مكان الحادث]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="50" width="100" height="30" uuid="465146cf-1b50-4164-8d0c-51692bb1088f"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[المعتمدية]]></text>
+			</staticText>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="320" y="90" width="100" height="30" uuid="1df29cee-9bfa-43e0-85cd-aee1034d358d"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{delegation_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="446" y="95" width="100" height="30" uuid="a9272793-0fa8-4494-9581-3e72f82d9011"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gouvernorat_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="441" y="50" width="100" height="30" uuid="e9cbcfa7-4f90-4e31-8187-2bbc4cfbe3d6"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الولاية ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
